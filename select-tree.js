@@ -12,6 +12,9 @@ class SelectTree extends HTMLElement {
     if (src) {
       csv = await CSV.fetch(src);
     }
+    if (!csv) {
+      return;
+    }
     const header = csv.shift();
     //console.log(header);
     this.csv = csv;
