@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>select-tree tag</title>
+<!--
+  <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+-->
+</head>
+<body style="margin: 2em;">
+
+<h1>select-tree tag</h1>
+<script type="module" src="./select-tree.js"></script>
+<select-tree id=sel src="./sample.csv"></select-tree>
+<div id=value style="border:1px solid black; margin: 1em 0; padding: .5em;"></div>
+
+<input id=code value=A2><button id=btn>set value</button>
+
+<script type="module">
+onload = async () => {
+  sel.onchange = () => {
+    value.textContent = sel.value;
+  };
+  btn.onclick = () => {
+    sel.value = code.value;
+  };
+};
+</script>
+
+<hr>
+<style>a { color: gray !important }</style>
+App: <a href=https://fukuno.jig.jp/>福野泰介の一日一創</a> (<a href=https://github.com/code4fukui/select-tree>select-tree tag - src on GitHub</a>)<br>
+</body>
