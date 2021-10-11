@@ -22,6 +22,10 @@ class SelectTree extends HTMLElement {
   }
   make(value) {
     const csv = this.csv;
+    if (!csv) {
+      createSelect([], this);
+      return;
+    }
     if (value) {
       const ns = value.indexOf(" ");
       if (ns > 0) {
