@@ -21,16 +21,17 @@ class SelectTree extends HTMLElement {
     this.make();
   }
   make(value) {
+    const csv = this.csv;
     if (value) {
       const ns = value.indexOf(" ");
       if (ns > 0) {
         value = value.substring(0, ns);
       }
-      const csv = this.csv;
-      value = csv.find(line => line.find(l => l == value));
+      if (csv) {
+        value = csv.find(line => line.find(l => l == value));
+      }
     }
 
-    const csv = this.csv;
     const addSel = (selected, parent) => {
       parent.innerHTML = "";
       const n = selected.length;
