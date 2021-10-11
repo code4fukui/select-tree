@@ -3,8 +3,9 @@ import { ArrayUtil } from "https://js.sabae.cc/ArrayUtil.js";
 import { CSV } from "https://js.sabae.cc/CSV.js";
 
 class SelectTree extends HTMLElement {
-  constructor(csv) {
+  constructor(csv, opts = { showLabel: true }) {
     super();
+    this.opts = opts;
     this.init(csv);
   }
   async init(csv) {
@@ -26,7 +27,7 @@ class SelectTree extends HTMLElement {
       createSelect([], this);
       return;
     }
-    if (value) {
+    if (value && !Array.isArray(value)) {
       const ns = value.indexOf(" ");
       if (ns > 0) {
         value = value.substring(0, ns);
@@ -47,10 +48,10 @@ class SelectTree extends HTMLElement {
         return true;
       });
       const ar = ArrayUtil.toUnique(csv2.map(line => line[n]));
-      const ar2 = ar.map(a => {
+      const ar2 = this.opts.showLabel ? ar.map(a => {
         const line = csv2.find(line => line[n] == a);
         return a + " " + line[line.length - 1];
-      });
+      }) : ar.slice();
       ar2.unshift("-");
       const c = create("span", parent);
       const sel = createSelect(ar2, c);
