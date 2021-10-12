@@ -47,7 +47,10 @@ class SelectTree extends HTMLElement {
         }
         return true;
       });
-      const ar = ArrayUtil.toUnique(csv2.map(line => line[n]));
+      const ar = ArrayUtil.toUnique(csv2.map(line => line[n])).filter(a => a);
+      if (ar.length == 0) {
+        return;
+      }
       const ar2 = this.opts.showLabel ? ar.map(a => {
         const line = csv2.find(line => line[n] == a);
         return a + " " + line[line.length - 1];
