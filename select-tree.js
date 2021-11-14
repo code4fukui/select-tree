@@ -22,6 +22,9 @@ class SelectTree extends HTMLElement {
     this.make();
   }
   make(value) {
+    if (!value) {
+      value = this.getAttribute("value");
+    }
     const csv = this.csv;
     if (!csv) {
       createSelect([], this);
@@ -89,6 +92,7 @@ class SelectTree extends HTMLElement {
     return sel[sel.length - 2].value;
   }
   set value(v) {
+    this.setAttribute("value", v);
     this.make(v);
     if (this.onchange) {
       this.onchange();
