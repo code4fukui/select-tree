@@ -66,9 +66,11 @@ class SelectTree extends HTMLElement {
         if (selected.length < csv[0].length - 2) {
           if (sel.value == "-") {
             child.innerHTML = "";
+            this._checkRequired();
           } else {
             const seled = [...selected, sel.value.split(" ")[0]];
             addSel(seled, child);
+            this._checkRequired();
           }
         }
       };
@@ -77,11 +79,15 @@ class SelectTree extends HTMLElement {
         sel.value = ar2[ar.findIndex(a => a == v) + 1];
         sel.onchange();
       }
+      this._checkRequired();
     };
     addSel([], this);
   }
   get value() {
     const sel = this.querySelectorAll("select");
+    if (!sel || sel.length == 0) {
+      return null;
+    }
     const v = sel[sel.length - 1].value;
     if (v != "-") {
       return v;
@@ -96,6 +102,15 @@ class SelectTree extends HTMLElement {
     this.make(v);
     if (this.onchange) {
       this.onchange();
+    }
+  }
+  _checkRequired() {
+    if (this.getAttribute("required") == "required") {
+      if (this.value) {
+        this.querySelector("select")?.classList.remove("required");
+      } else {
+        this.querySelector("select")?.classList.add("required");
+      }
     }
   }
 }
