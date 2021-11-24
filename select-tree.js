@@ -66,13 +66,12 @@ class SelectTree extends HTMLElement {
         if (selected.length < csv[0].length - 2) {
           if (sel.value == "-") {
             child.innerHTML = "";
-            this._checkRequired();
           } else {
             const seled = [...selected, sel.value.split(" ")[0]];
             addSel(seled, child);
-            this._checkRequired();
           }
         }
+        this._checkRequired();
       };
       if (value) {
         const v = value[n];
@@ -105,6 +104,7 @@ class SelectTree extends HTMLElement {
     }
   }
   _checkRequired() {
+    console.log("checkreq", this.value);
     if (this.getAttribute("required") == "required") {
       if (this.value) {
         this.querySelector("select")?.classList.remove("required");
