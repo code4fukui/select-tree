@@ -104,7 +104,6 @@ class SelectTree extends HTMLElement {
     }
   }
   _checkRequired() {
-    console.log("checkreq", this.value);
     if (this.getAttribute("required") == "required") {
       if (this.value) {
         this.querySelector("select")?.classList.remove("required");
