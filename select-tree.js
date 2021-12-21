@@ -6,6 +6,13 @@ class SelectTree extends HTMLElement {
   constructor(csv, opts = { showLabel: true }) {
     super();
     this.opts = opts;
+    if (opts) {
+      for (const name in opts) {
+        if (opts[name] != null) {
+          this.setAttribute(name, opts[name]);
+        }
+      }
+    }
     this.init(csv);
   }
   async init(csv) {
@@ -22,9 +29,11 @@ class SelectTree extends HTMLElement {
     this.make();
   }
   make(value) {
+    //console.log("seltree make", value, this.csv)
     if (!value) {
       value = this.getAttribute("value");
     }
+    //console.log("seltree make", value)
     const csv = this.csv;
     if (!csv) {
       createSelect([], this);
@@ -39,7 +48,7 @@ class SelectTree extends HTMLElement {
         value = csv.find(line => line.find(l => l == value));
       }
     }
-
+    
     const addSel = (selected, parent) => {
       parent.innerHTML = "";
       const n = selected.length;
