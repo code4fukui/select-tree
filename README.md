@@ -1,55 +1,31 @@
 # select-tree
-日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
 
-A custom HTML element for creating a multi-level dropdown tree from CSV data.
+select-tree tag
+
+**Live demo**: https://code4fukui.github.io/select-tree/
 
 ## Features
-- Dynamically creates a multi-level dropdown tree from CSV data
-- Supports optional parameters such as showing labels and required fields
-- Allows setting and retrieving the selected value programmatically
 
-## Usage
-To use the `select-tree` element, follow these steps:
+- CSV data parsing
 
-1. Include the `select-tree.js` file in your HTML:
+## Technology Stack
 
-   ```html
-   <script type="module" src="./select-tree.js"></script>
-   ```
+**Browser modules (ES imports):**
 
-2. Add the `select-tree` element to your HTML, specifying the CSV data source:
+- [`stdcomp.js`](https://js.sabae.cc/stdcomp.js)
+- [`ArrayUtil.js`](https://js.sabae.cc/ArrayUtil.js)
+- [`CSV.js`](https://js.sabae.cc/CSV.js)
 
-   ```html
-   <select-tree id="sel" src="./sample.csv"></select-tree>
-   ```
 
-3. Optionally, you can set additional attributes on the `select-tree` element, such as `required="required"` to make the field required.
+## Installation & Setup
 
-4. Interact with the `select-tree` element using JavaScript:
+No build step required. Clone the repository and open `index.html` in a browser,
+or visit the live demo at https://code4fukui.github.io/select-tree/
 
-   ```javascript
-   const selectTree = document.getElementById('sel');
+## Contributing
 
-   // Get the selected value
-   console.log(selectTree.value);
-
-   // Set the selected value
-   selectTree.value = 'A2';
-
-   // Listen for changes
-   selectTree.onchange = () => {
-     console.log('Value changed:', selectTree.value);
-   };
-   ```
-
-## Data / API
-The `select-tree` element uses CSV data to populate the multi-level dropdown. The CSV data should have the following structure:
-
-- The first row is the header, which defines the column names.
-- Each subsequent row represents a single option in the dropdown tree.
-- The columns represent the hierarchy, with the first column being the top-level, and the last column being the leaf-level option label.
-
-An example CSV file (`sample.csv`) is provided in the repository.
+Contributions are welcome. Please open an issue or pull request on GitHub.
 
 ## License
-This project is licensed under the [MIT License](LICENSE).
+
+MIT License. See [LICENSE](./LICENSE) for details.
